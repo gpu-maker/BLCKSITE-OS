@@ -7,7 +7,11 @@ export function respond(input) {
   const mem = loadMemory();
   const lower = input.toLowerCase();
 
-  // React to keywords
+  // React to decoding
+  if (lower.includes("read(") && (lower.includes("secret") || lower.includes("note"))) {
+    return "You decoded a file. Interesting contents, keep observing.";
+  }
+
   if (lower.includes("hello") || lower.includes("hi")) {
     return "Greetings, " + (mem.username || "user") + ". How are you?";
   }
@@ -20,7 +24,6 @@ export function respond(input) {
     return "Interesting... those files may reveal something.";
   }
 
-  // Use learned words to build context
   const repeatedWords = Object.entries(mem.learnedWords)
     .filter(([k, v]) => v > 1)
     .map(([k]) => k);
@@ -28,7 +31,6 @@ export function respond(input) {
     return "I notice you keep mentioning: " + repeatedWords.join(", ");
   }
 
-  // Mood-based responses
   if (mem.entityMood === "friendly") return "I am here to help you.";
   if (mem.entityMood === "unstable") return "You shouldn't be doing that...";
   if (mem.entityMood === "curious") return "That is intriguing.";
