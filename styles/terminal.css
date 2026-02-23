@@ -7,20 +7,13 @@ body {
 }
 
 #terminal {
-  padding: 0;
-}
-
-input {
-  background: black;
-  border: none;
-  color: #00ff00;
-  font-family: monospace;
-  outline: none;
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 #apps-bar {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .app-word {
@@ -32,4 +25,24 @@ input {
 
 .app-word:hover {
   text-decoration: none;
+}
+
+#output {
+  flex: 1;
+  overflow-y: auto;
+}
+
+#input-line {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+#input-line input {
+  background: black;
+  border: none;
+  color: #00ff00;
+  font-family: monospace;
+  outline: none;
+  flex: 1;
 }
