@@ -28,6 +28,9 @@ export function renderAppsBar() {
 }
 
 export function launchApp(name) {
-  if (appMap[name]) appMap[name]();
-  else window.printToTerminal("UNKNOWN APP");
+  if (appMap[name]) {
+    window.currentApp = appMap[name](); // store current app to route input
+  } else {
+    window.printToTerminal("UNKNOWN APP");
+  }
 }
