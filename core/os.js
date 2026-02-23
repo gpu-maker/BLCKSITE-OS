@@ -2,6 +2,7 @@ import { renderAppsBar } from "./windowManager.js";
 import { runInstabilityTick } from "../system/instability.js";
 
 const output = document.getElementById("output");
+const input = document.getElementById("commandInput");
 
 export function printToTerminal(text) {
   const line = document.createElement("div");
@@ -12,4 +13,15 @@ export function printToTerminal(text) {
 
 window.printToTerminal = printToTerminal;
 
-export const osTick = () => runInstabilityTick();
+// Handle command input
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const cmd = input.value;
+    printToTerminal("> " + cmd);
+    input.value = "";
+    if (window.currentApp && window.currentApp.command) {
+      window.currentApp.command(cmd);
+    }
+    runInstabilityTick();
+  }
+});
