@@ -12,12 +12,10 @@ setTimeout(() => {
 
 setTimeout(() => {
   const mem = loadMemory();
-
   if (!mem.username) {
     print("IDENTIFY USER:");
   } else {
     print("WELCOME BACK " + mem.username);
   }
-
-  renderAppsBar(); // clickable apps
+  renderAppsBar();
 }, 800);
